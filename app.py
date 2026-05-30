@@ -4,5 +4,11 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('index.html')
+
+# مسار للإدمن
+@app.route('/admin')
+def admin_dashboard():
+    return render_template('admin_dashboard.html')
+
 if __name__ == '__main__':
         app.run(debug=True)
