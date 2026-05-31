@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+    <h1>Admin Dashboard</h1>
+    <p>Welcome to the admin dashboard. Here you can manage products, view orders, and perform administrative tasks.</p>
+    
+    <!-- Example of an admin card -->
+    <div class="admin-card">
+        <h2>Manage Products</h2>
+        <p>Add, edit, or remove products from your store.</p>
+        <button>Go to Product Management</button>
+    </div>
+    
+    <div class="admin-card">
+        <h2>View Orders</h2>
+        <p>See all customer orders and their details.</p>
+        <button>Go to Order Management</button>
+    </div>
+    
+    <div class="admin-card">
+        <h2>Customer Management</h2>
+        <p>Manage customer accounts and information.</p>
+        <button>Go to Customer Management</button>
+    </div>
+{% endblock %}
