@@ -1,4 +1,7 @@
-from flask import Flask, render_template , json , request , redirect , url_for , session , os , jsonify
+from flask import Flask, render_template , request , redirect , url_for , session , jsonify
+import os
+import json
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -9,6 +12,10 @@ def index():
 @app.route('/admin')
 def admin_dashboard():
     return render_template('admin_dashboard.html')
+
+@app.route("/admin/<username>")
+def admin_dashboard_user(username):
+    return render_template("admin_dashboard_user.html", username=username)
 
 # تحديد مكان ملف JSON
 ADMIN_FILE = "admins.json"
@@ -25,7 +32,8 @@ def save_admins(admins):
     with open(ADMIN_FILE, "w") as f:
         json.dump(admins, f, indent=4)
 
-@app.route("/admin/signup", methods=["POST"])
+@app.route("/admin/signup", methods=["POST", "GET"])
+
 def admin_signup():
     new_user = request.form.get("new_admin_user")
     new_password = request.form.get("new_admin_password")
@@ -40,7 +48,7 @@ def admin_signup():
 
     save_admins(admins)
 
-    return jsonify({"message": "Admin added successfully!", "admins": admins})
+    return redirect(url_for("admin_dashboard_user", username=new_user))
 
 
 if __name__ == '__main__':
